@@ -264,6 +264,16 @@ def load_cnn():
 
 cnn_model, class_map = load_cnn()
 
+CATEGORY_TH = {
+    "Electronics_and_Appliances": "อิเล็กทรอนิกส์และเครื่องใช้ไฟฟ้า",
+    "Fashion":                     "แฟชั่นและเครื่องแต่งกาย",
+    "Household_Essentials":        "ของใช้ในบ้าน",
+    "accessories":                 "อุปกรณ์เสริมและแอคเซสซอรี่",
+    "other":                       "อื่น ๆ",
+    "sports_fitness":              "กีฬาและฟิตเนส",
+    "stores":                      "ร้านค้าและของชำ",
+}
+
 def cnn_predict(img):
     if cnn_model is None:
         return []
@@ -336,13 +346,14 @@ with col_right:
 
         if results:
             top_cat, top_prob = results[0]
+            top_cat_th = CATEGORY_TH.get(top_cat, top_cat)
             conf_pct = top_prob * 100
             conf_color = '#059669' if conf_pct >= 70 else ('#B45309' if conf_pct >= 40 else '#DC2626')
 
             st.markdown(f"""
             <div class="top-wrap">
                 <div class="top-label">Top Prediction</div>
-                <div class="top-value">{top_cat}</div>
+                <div class="top-value">{top_cat_th}</div>
                 <div class="top-conf" style="color:{conf_color}">{conf_pct:.1f}% confidence</div>
                 <div class="top-sub">จาก {len(results)} หมวดหมู่ที่มีโอกาสสูงสุด</div>
             </div>
@@ -379,6 +390,7 @@ with col_right:
             """, unsafe_allow_html=True)
             for rank, (cat, prob) in enumerate(results, 1):
                 pct = prob * 100
+                cat_th = CATEGORY_TH.get(cat, cat)
                 if rank == 1:
                     bar_color = 'linear-gradient(90deg,#9D6FFF,#7C3AED)'
                     label_color = '#E2E8F0'
@@ -390,7 +402,7 @@ with col_right:
                 st.markdown(f"""
                 <div class="prob-row">
                     <div class="prob-header">
-                        <span class="prob-label" style="color:{label_color}">#{rank} {cat}</span>
+                        <span class="prob-label" style="color:{label_color}">#{rank} {cat_th}</span>
                         <span class="prob-val" style="color:{val_color}">{pct:.1f}%</span>
                     </div>
                     <div class="prob-bar-bg">
