@@ -265,13 +265,19 @@ def load_cnn():
 cnn_model, class_map = load_cnn()
 
 CATEGORY_TH = {
+    # underscore variants
     "Electronics_and_Appliances": "อิเล็กทรอนิกส์และเครื่องใช้ไฟฟ้า",
-    "Fashion":                     "แฟชั่นและเครื่องแต่งกาย",
-    "Household_Essentials":        "ของใช้ในบ้าน",
-    "accessories":                 "อุปกรณ์เสริมและแอคเซสซอรี่",
-    "other":                       "อื่น ๆ",
-    "sports_fitness":              "กีฬาและฟิตเนส",
-    "stores":                      "ร้านค้าและของชำ",
+    "Household_Essentials":       "ของใช้ในบ้าน",
+    "sports_fitness":             "กีฬาและฟิตเนส",
+    # space variants (actual class names from model JSON)
+    "Electronics and Appliances": "อิเล็กทรอนิกส์และเครื่องใช้ไฟฟ้า",
+    "Household Essentials":       "ของใช้ในบ้าน",
+    "sports fitness":             "กีฬาและฟิตเนส",
+    # common to both
+    "Fashion":      "แฟชั่นและเครื่องแต่งกาย",
+    "accessories":  "อุปกรณ์เสริมและแอคเซสซอรี่",
+    "other":        "อื่น ๆ",
+    "stores":       "ร้านค้าและของชำ",
 }
 
 def cnn_predict(img):
