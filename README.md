@@ -4,7 +4,7 @@
 - **ML Ensemble** (Random Forest + XGBoost + HistGBM) ทำนายยอดขายจากข้อมูลตัวเลข
 - **CNN** (MobileNetV2 Transfer Learning) จำแนกหมวดหมู่สินค้าจากรูปภาพ
 
-🌐 **Demo:** https://ecommerce-ai-project.streamlit.app
+🌐 **Demo:** https://ecommerceai-finalproject.streamlit.app/
 
 ---
 
